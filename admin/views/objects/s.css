@@ -1,0 +1,95 @@
+.objects{
+    display: flex; flex-wrap: wrap; gap: .4rem;
+    padding: .4rem;
+}
+
+
+.list{
+    display: flex; flex-direction: column; gap: .4rem;
+    list-style-type: none
+}
+
+.list__item{
+    background-color: rgba(0, 120, 0, .08);
+    border: 1px solid var(--color-border); border-radius: .4rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    flex-basis: calc((100% - (.4rem * 4)) / 5);
+    padding: 1rem;
+    position: relative;
+}
+.list__item.updated{
+    background-color: rgba(100, 0, 100, .08);
+}
+
+.item__title{
+    font-size: 1em;
+}
+
+.item__actions{
+    position: absolute; top: .4rem; right: 1rem;
+}
+
+.actions__element{
+    background-color: transparent;
+    text-decoration: underline;
+}
+.actions__element:hover{
+    text-decoration: none;
+}
+
+
+/* < popup */
+.popup{
+    display: flex; justify-content: center; align-items: center;
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed; top: 0; left: 0; z-index: -1;
+    width: 100%; height: 100%;
+}
+.popup.active{
+    z-index: 9;
+}
+
+.popup-form{
+    background-color: #eee;
+    border-radius: 1rem;
+    display: flex; flex-direction: column; gap: .2rem;
+    width: 60%; max-width: 60rem; height: calc(100% - (1rem * 2));
+    padding: 1rem;
+}
+
+
+.popup-form__row{
+    text-align: right;
+}
+.popup-form__row_full-grown{
+    flex-grow: 1;
+}
+.popup-form__row_save{
+    align-self: flex-end;
+}
+
+
+.popup-form__close{
+    background-color: transparent;
+    align-self: flex-end;
+    font-size: 2rem; font-weight: bolder;
+    transform: rotate(45deg);
+    transition: var(--transition);
+}
+.popup-form__close:hover{
+    transform: rotate(135deg);
+}
+
+.popup-form__element{
+    border: 1px solid var(--color-border);
+    padding: 1rem;
+}
+
+.popup-form__textarea{
+    height: 100%
+}
+
+.popup-form__select{
+    width: 100%;
+}
+/* > popup */
