@@ -35,6 +35,12 @@ class Authorisation
     }
 
     public function signCheck () {
+        if( !isset($_SESSION['latch']) ) {
+            $this->setMessage('Доступ запрещён');
+
+            return false;
+        }
+
         $a_latch = explode('|', $_SESSION['latch']);
 
         if ($a_latch[0] !== date('ymd')) {

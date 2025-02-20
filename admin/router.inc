@@ -8,7 +8,7 @@ $Authorisation = new Authorisation($dbh);
 $Objects = new Objects($dbh);
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' and $Authorisation->signCheck() ) {
 
     if (!empty($_POST['l']) && !empty($_POST['p'])) {
 
@@ -27,26 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }
 
-} elseif ( isset($_GET['select_id']) ) {
+} elseif ( isset($_GET['select_id']) and $Authorisation->signCheck() ) {
 
     exit( json_encode($Objects->getAll(+$_GET['select_id']), JSON_UNESCAPED_UNICODE) );
 
-} elseif ( isset($_GET['object_id']) ) {
+} elseif ( isset($_GET['object_id']) and $Authorisation->signCheck() ) {
 
     exit( json_encode($Objects->getOne(+$_GET['object_id']), JSON_UNESCAPED_UNICODE) );
 
-} elseif ( isset($_GET['deleted_id']) ) {
+} elseif ( isset($_GET['deleted_id']) and $Authorisation->signCheck() ) {
 
     $Objects->deleteObject($_GET['deleted_id']);
 
-} elseif ( isset($_GET['exit']) ) {
+} elseif ( isset($_GET['exit']) and $Authorisation->signCheck() ) {
 
     $Authorisation->signOut();
 
-} elseif ( isset($_SESSION['latch']) ) {
+} elseif ( isset($_SESSION['latch']) and $Authorisation->signCheck() ) {
 
     $login = $Authorisation->signCheck();
-
     require './views/objects/i.inc';
 
 } else {
